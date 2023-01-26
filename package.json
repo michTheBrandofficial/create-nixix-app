@@ -1,0 +1,19 @@
+{
+  "name": "create-nixix-app",
+  "version": "0.0.1",
+  "description": "cna-template for creating a nixix app",
+  "main": "index.js",
+  "type": "module",
+  "bin": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nixix"
+  ],
+  "author": "Ikechukwu Charles",
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^9.1.4"
+  }
+}
