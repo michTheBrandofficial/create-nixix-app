@@ -1,15 +1,61 @@
-## create-nixix-app
+<style>
+  * {
+    font-size: 16px;
+  }
+  h2 {
+    font-size: 25px;
+  }
+  ul, h3, h4 {
+    color: lightblue;
+  }
+  span {
+    color: purple;
+  }
+  
+</style>  
 
-#### This is the official nixix app template for creating, well, nixix apps.
+<h2>
+  create-nixix-app
+</h2>
+<hr>
+<h3>
+  This package is an executable for configuring workspaces for Nixix apps.
+</h3>
+<h4>
+  To install it, type the following in your terminal:
+</h4>
 
-To install it, type the following in your terminal:
 ``` bash
-npm install create-nixix-app
+  npm install create-nixix-app
 ```
+
 
 To run it, type the following: 
 ``` bash
-npx create-nixix-app
+  npx create-nixix-app
+```
+<h3 class="x">
+  This will prompt you to overwrite the src and public directories. When answered 'y' or 'yes' or 'YES', it will add some npm scripts to the scripts property in the package.json file and it will make the following directories and files:
+</h3>
+
+<ul>
+  <li> src/ [ <span>directory</span> ] </li>
+  <li> public/ [ <span>directory</span> ] </li>
+  <li> .gitignore [ <span>file</span> ] </li>
+  <li> vite.config.js [ <span>file</span> ] </li>
+  <li> jsconfig.json [ <span>file</span> ] </li>
+</ul>
+
+<h4>
+  The final step is to download the nixix library, type: 
+</h4> 
+
+```bash
+  npm install nixix
 ```
 
-Thank you for downloading the create-nixix-app package and happy coding. 😁
+<h4>
+  Thank you for downloading this package and happy coding 😁!!!
+</h4>
+
+

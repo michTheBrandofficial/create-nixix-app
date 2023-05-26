@@ -1,47 +1,72 @@
 #!/usr/bin/env node
 
-import { writeFileSync, mkdirSync, existsSync, readFileSync, appendFileSync } from 'fs';
 import path from 'path';
 import inquirer from 'inquirer';
-import configBabel from './lib/configBabel.js'
 import configDirectories from './lib/configDirectories.js'
 import configGitignore from './lib/configGitignore.js'
 import configJS from './lib/configJS.js'
 import configPackage from './lib/configPackage.js'
-import configWebpack from './lib/configWebpack.js'
+import configVite from './lib/configVite.js'
+import { existsSync } from 'fs';
 
 async function runLibrary() {
   console.log('Thank you for downloading the create-nixix-app package.');
 
-  const answer = await inquirer.prompt(
-    {
-      name: '(y/n)',
-      type: 'input',
-      message: 'Do you want to overwrite the src and public directories? '
+  async function checkSrc() {
+    if (existsSync(path.join('./src')) || existsSync(path.join('./public'))) {
+      return true;
+    } else {
+      return false;
     }
-  )
-  
-  if ((answer['(y/n)'] === 'y') || (answer['(y/n)'] === 'yes') || (answer['(y/n)'] === 'YES')) {
-    create_nixix_app();
-    console.log('Type "npm install nixix" in the terminal now to get started.');
-  } else {
-    console.log('You can configure the library on your own. Type "npm install nixix" in the terminal now to get started.');
   }
 
+  
+  const answer = await inquirer.prompt(await checkSrc() === true ?  {
+    name: '(y/n)',
+    type: 'input',
+    message: 'It seems like you have the src and public directories in your project. Do you want to overwrite them? (y/n)'
+  } :  {
+    name: '(y/n)',
+    type: 'input',
+    message: 'Configure directories? '
+  })
+
+  const tsOrJs = await inquirer.prompt({
+    name: '(ts/js)',
+    type: 'list',
+    choices: ['TypeScript', 'JavaScript'],
+    message: 'Which template do you wish to use?'
+  })
+
+  /**
+   * @type {{'TypeScript': 'ts','JavaScript': 'js'}}
+   */
+  const templateMap = {
+    'TypeScript': 'ts',
+    'JavaScript': 'js'
+  };
+
+  if ((answer['(y/n)'] === 'y') || (answer['(y/n)'] === 'yes') || (answer['(y/n)'] === 'YES')) {
+    configDirectories(templateMap[tsOrJs['(ts/js)']])
+  } else {
+    console.log('You can setup the project on your own. Type "npm install nixix" in the terminal now to get started.');
+  }
+
+  create_nixix_app()
 }
 
 runLibrary();
 
 
 function create_nixix_app() {
-
-  configPackage();
+  const maybeNull = configPackage();
+  if (maybeNull === null) {
+    return null;
+  }
   configGitignore();
-  configDirectories();
   configJS();
-  configBabel();
-  configWebpack()
-  
+  configVite()
+  console.log('All done. Happy Coding ✔️ .', 'Type "npm install nixix" in the terminal now to get started.');  
 }
 
 

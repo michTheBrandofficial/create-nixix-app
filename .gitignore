@@ -1,1 +1,11 @@
 node_modules/
+public/
+src/
+assets/
+styles/
+index.html
+vite.config.js
+.vscode
+dist
+firebase.json
+.firebaserc

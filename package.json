@@ -1,12 +1,13 @@
 {
   "name": "create-nixix-app",
-  "version": "0.0.2",
+  "version": "0.0.7",
   "description": "cna-template for creating a nixix app",
   "main": "index.js",
   "type": "module",
   "bin": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pub": "npm publish"
   },
   "keywords": [
     "nixix"
