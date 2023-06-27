@@ -5,8 +5,8 @@ export interface Json {
     },
     "baseUrl": string,
     "jsx": 'react-jsxdev' | 'react' | 'preserve',
-    "jsxImportSource": "nixix-types",
-    "typeRoots": ["nixix", "nixix/router", "nixix-types"],
+    "jsxImportSource": "nixix/types",
+    "typeRoots": ["nixix", "nixix/router"],
     "module": string,
     "target": string,
     "resolveJsonModule": boolean;
@@ -14,7 +14,7 @@ export interface Json {
     "allowSyntheticDefaultImports": boolean;
     "checkJs": boolean;
     "types": [
-      "nixix-types"
+      "nixix/types"
     ];
   }
 }
