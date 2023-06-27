@@ -7,6 +7,7 @@ import configGitignore from './lib/configGitignore.js'
 import configJS from './lib/configJS.js'
 import configPackage from './lib/configPackage.js'
 import configVite from './lib/configVite.js'
+import configSnippets from './lib/configSnippets.js';
 import { existsSync } from 'fs';
 
 async function runLibrary() {
@@ -65,7 +66,8 @@ function create_nixix_app() {
   }
   configGitignore();
   configJS();
-  configVite()
+  configVite();
+  configSnippets()
   console.log('All done. Happy Coding ✔️ .', 'Type "npm install nixix" in the terminal now to get started.');  
 }
 

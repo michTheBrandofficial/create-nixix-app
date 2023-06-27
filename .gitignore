@@ -6,6 +6,7 @@ styles/
 index.html
 vite.config.js
 .vscode
+.github
 dist
 firebase.json
 .firebaserc
