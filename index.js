@@ -13,7 +13,8 @@ import { existsSync } from 'fs';
 async function runLibrary() {
   console.log('Thank you for downloading the create-nixix-app package.');
 
-  async function checkSrc() {
+  // checks if the src and public dirs already exist.
+  async function dirsExist() {
     if (existsSync(path.join('./src')) || existsSync(path.join('./public'))) {
       return true;
     } else {
@@ -21,8 +22,7 @@ async function runLibrary() {
     }
   }
 
-  
-  const answer = await inquirer.prompt(await checkSrc() === true ?  {
+  const answer = await inquirer.prompt(await dirsExist() === true ?  {
     name: '(y/n)',
     type: 'input',
     message: 'It seems like you have the src and public directories in your project. Do you want to overwrite them? (y/n)'
@@ -32,6 +32,11 @@ async function runLibrary() {
     message: 'Configure directories? '
   })
 
+  // get the template for the project
+  /**
+   * @typedef {import('./types/index').TemplateMap} TemplateMap
+   * @type {{'(ts/js)': keyof TemplateMap}} 
+   */
   const tsOrJs = await inquirer.prompt({
     name: '(ts/js)',
     type: 'list',
@@ -39,8 +44,20 @@ async function runLibrary() {
     message: 'Which template do you wish to use?'
   })
 
+  // get the css styling option for the project
   /**
-   * @type {{'TypeScript': 'ts','JavaScript': 'js'}}
+   * @typedef {import('./types/index').CSSOptions} CSSOptions
+   * @type {{'(css)': CSSOptions}} 
+   */
+  const cssOptions = await inquirer.prompt({
+    name: '(css)',
+    type: 'list',
+    choices: ['Vanilla CSS', 'TailwindCSS'],
+    message: 'Which styling option do you wish to use?'
+  })
+
+  /**
+   * @type {import('./types/index').TemplateMap}
    */
   const templateMap = {
     'TypeScript': 'ts',
@@ -48,27 +65,36 @@ async function runLibrary() {
   };
 
   if ((answer['(y/n)'] === 'y') || (answer['(y/n)'] === 'yes') || (answer['(y/n)'] === 'YES')) {
-    configDirectories(templateMap[tsOrJs['(ts/js)']])
+    // pass the template and the css options as args.
+    configDirectories(templateMap[tsOrJs['(ts/js)']], cssOptions['(css)']);
   } else {
     console.log('You can setup the project on your own. Type "npm install nixix" in the terminal now to get started.');
   }
 
-  create_nixix_app()
+  create_nixix_app(cssOptions['(css)']);
 }
 
 runLibrary();
 
-
-function create_nixix_app() {
+/**
+ * @typedef {import('./types/index').CSSOptions} CSSOptions
+ * @param {CSSOptions} cssOptions
+ */
+function create_nixix_app(cssOptions) {
   const maybeNull = configPackage();
   if (maybeNull === null) {
     return null;
   }
+
+  const cssInstallMap = {
+    'TailwindCSS': ' autoprefixer tailwindcss postcss',
+    'Vanilla CSS': ''
+  } 
   configGitignore();
   configJS();
   configVite();
   configSnippets()
-  console.log('All done. Happy Coding ✔️ .', 'Type "npm install nixix" in the terminal now to get started.');  
+  console.log(`All done. Happy Coding ✔️ .', 'Type "npm install nixix${cssInstallMap[cssOptions]}" in the terminal now to get started.`);  
 }
 
 

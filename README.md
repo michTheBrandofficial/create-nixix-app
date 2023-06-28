@@ -39,11 +39,18 @@ To run it, type the following:
 </h3>
 
 <ul>
-  <li> src/ [ <span>directory</span> ] </li>
-  <li> public/ [ <span>directory</span> ] </li>
+  <li> src [ <span>directory</span> ] </li>
+  <li> public [ <span>directory</span> ] </li>
+  <li> .vscode [ <span>directory</span> ] </li>
+  <li> assets [ <span>directory</span> ] </li>
+  <li> components [ <span>directory</span> ] </li>
   <li> .gitignore [ <span>file</span> ] </li>
   <li> vite.config.js [ <span>file</span> ] </li>
   <li> jsconfig.json [ <span>file</span> ] </li>
+  <li> declarations.d.ts [ <span>file</span> ] </li>
+  <li> index.html [ <span>file</span> ] </li>
+  <li> postcss.config.js [ <span>file</span> ] </li>
+  <li> tailwind.config.js [ <span>file</span> ] </li>
 </ul>
 
 <h4>
@@ -53,6 +60,10 @@ To run it, type the following:
 ```bash
   npm install nixix
 ```
+
+<h4>
+  There may be additional steps for configuring the styling option for your project.
+</h4>
 
 <h4>
   Thank you for downloading this package and happy coding 😁!!!

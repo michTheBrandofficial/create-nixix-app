@@ -1,6 +1,6 @@
 {
   "name": "create-nixix-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "cna-template for creating a nixix app",
   "main": "index.js",
   "type": "module",
@@ -8,6 +8,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "pub": "npm publish",
+    "rem": "rm -r tailwind.config.js postcss.config.js styles src public/ assets/ components/ jsconfig.json utils/ declarations.d.ts index.html vite.config.js",
     "build": "vite build",
     "start": "vite",
     "preview": "vite preview"
