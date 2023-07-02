@@ -29,7 +29,7 @@ async function runLibrary() {
   } :  {
     name: '(y/n)',
     type: 'input',
-    message: 'Configure directories? '
+    message: 'Configure directories? (y/n)'
   })
 
   // get the template for the project
@@ -64,6 +64,9 @@ async function runLibrary() {
     'JavaScript': 'js'
   };
 
+  if (!create_nixix_app(cssOptions['(css)'])) {
+    return 
+  }
   if ((answer['(y/n)'] === 'y') || (answer['(y/n)'] === 'yes') || (answer['(y/n)'] === 'YES')) {
     // pass the template and the css options as args.
     configDirectories(templateMap[tsOrJs['(ts/js)']], cssOptions['(css)']);
@@ -71,7 +74,6 @@ async function runLibrary() {
     console.log('You can setup the project on your own. Type "npm install nixix" in the terminal now to get started.');
   }
 
-  create_nixix_app(cssOptions['(css)']);
 }
 
 runLibrary();
@@ -86,15 +88,28 @@ function create_nixix_app(cssOptions) {
     return null;
   }
 
-  const cssInstallMap = {
-    'TailwindCSS': ' autoprefixer tailwindcss postcss',
-    'Vanilla CSS': ''
-  } 
+  /**
+   * @type {import('./types').Dependencies}
+   */
+  const installMap = {
+    dependencies: {
+      nixix: '^1.4.25'
+    }
+  };
+
+  if (cssOptions === 'TailwindCSS') {
+    installMap['devDependencies'] = {
+      tailwindcss: '^3.3.1',
+      postcss: '^8.4.22',
+      autoprefixer: '^10.4.14'
+    }
+  }
   configGitignore();
   configJS();
   configVite();
   configSnippets()
-  console.log(`All done. Happy Coding ✔️ .', 'Type "npm install nixix${cssInstallMap[cssOptions]}" in the terminal now to get started.`);  
+  console.log(`All done. Happy Coding ✔️ .', 'Type "npm install${configPackage(installMap)}" in the terminal now to get started.`);  
+  return 'Done'
 }
 
 
