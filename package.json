@@ -1,6 +1,6 @@
 {
   "name": "create-nixix-app",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "cna-template for creating a nixix app",
   "main": "index.js",
   "type": "module",

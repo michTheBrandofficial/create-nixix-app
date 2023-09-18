@@ -33,7 +33,7 @@ export type FileDirStructure =  {
 
 export interface Dependencies {
   dependencies: {
-    "nixix": "^1.4.25"
+    "nixix": "^1.4.25" | (string & {})
   },
   devDependencies?: {
     "autoprefixer": "^10.4.14",
