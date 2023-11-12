@@ -8,40 +8,36 @@ export interface Json {
     jsxImportSource: 'nixix/types';
     module: string;
     target: string;
+    strict?: boolean;
     resolveJsonModule: boolean;
     moduleResolution: 'node' | 'Node';
     allowSyntheticDefaultImports: boolean;
-    checkJs: boolean;
-    types: [
-      "nixix/router",
-      "nixix/dom",
-      "nixix/primitives",
-      "nixix/hoc"
-    ],
+    checkJs?: boolean;
+    types: ['nixix/router', 'nixix/dom', 'nixix/primitives', 'nixix/hoc'];
   };
 }
 
-export type FileDirStructure =  {
+export type FileDirStructure = {
   src: string[];
   assets: string[];
   components: null;
   utils: null;
   pages: null;
-  styles?: ['App.css'],
-  types?: 'index.d.ts'
-}
+  styles?: ['View.css'];
+  types?: 'index.d.ts';
+};
 
 export interface Dependencies {
   dependencies: {
-    "nixix": "^1.4.25" | (string & {})
-  },
+    nixix: 'latest' | (string & {});
+  };
   devDependencies?: {
-    "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.22",
-    "tailwindcss": "^3.3.1"
-  }
+    autoprefixer: 'latest' | (string & {});
+    postcss: 'latest' | (string & {});
+    tailwindcss: 'latest' | (string & {});
+  };
 }
 
 export type CSSOptions = 'Vanilla CSS' | 'TailwindCSS';
 
-export type TemplateMap = {'TypeScript': 'ts','JavaScript': 'js'}; 
+export type TemplateMap = { TypeScript: 'ts'; JavaScript: 'js' };

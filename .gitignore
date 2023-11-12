@@ -1,7 +1,6 @@
 node_modules/
 public/
 src/
-assets/
 styles/
 index.html
 vite.config.js
@@ -11,3 +10,4 @@ test/
 dist
 firebase.json
 .firebaserc
+*.sh

@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  background-color: #1f1f1f;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+}
+
+.svg-links {
+  width: fit-content;
+  height: fit-content;
+  padding: 0 20px 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+}
+
+a {
+  width: fit-content;
+  height: fit-content;
+  text-decoration: none;
+}
+
+.logo {
+  will-change: filter;
+  transition: filter 300ms;
+  cursor: pointer;
+}
+
+.logo.nixix {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding-right: 10px;
+  padding-bottom: 4px;
+  line-height: 1.9;
+  background-color: #dc143c;
+  color: whitesmoke;
+  font-size: 20px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  font-weight: 900;
+}
+
+.logo.vite:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.nixix:hover {
+  filter: drop-shadow(0 0 2em #dc143c);
+}
+
+.text {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  font-size: 40px;
+  color: whitesmoke;
+  font-weight: 900;
+}
+
+button {
+  width: fit-content;
+  height: fit-content;
+  padding-inline: 12px;
+  padding-block: 8px;
+  font-size: medium;
+  background-color: #171717;
+  border: none;
+  color: whitesmoke;
+  font-weight: 500;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+h3 {
+  color: #888;
+}

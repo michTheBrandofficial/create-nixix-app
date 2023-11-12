@@ -1,17 +1,14 @@
 {
   "name": "create-nixix-app",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "cna-template for creating a nixix app",
   "main": "index.js",
   "type": "module",
-  "bin": "index.js",
+  "bin": {
+    "create-nixix-app": "index.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "pub": "npm publish",
-    "rem": "rm -r tailwind.config.js postcss.config.js styles src public/ assets/ components/ jsconfig.json utils/ declarations.d.ts index.html vite.config.js",
-    "build": "vite build",
-    "start": "vite",
-    "preview": "vite preview"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "nixix"
@@ -21,5 +18,18 @@
   "dependencies": {
     "@types/node": "^20.3.2",
     "inquirer": "^9.1.4"
-  }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michTheBrandofficial/create-nixix-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/michTheBrandofficial/create-nixix-app/issues"
+  },
+  "homepage": "https://github.com/michTheBrandofficial/create-nixix-app#readme"
 }

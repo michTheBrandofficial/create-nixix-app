@@ -4,7 +4,7 @@ import path from 'path';
 import inquirer from 'inquirer';
 import configDirectories from './lib/configDirectories.js';
 import configGitignore from './lib/configGitignore.js';
-import configJS from './lib/configJS.js';
+import configJS, { configTS } from './lib/configJS.js';
 import configPackage from './lib/configPackage.js';
 import configVite from './lib/configVite.js';
 import configSnippets from './lib/configSnippets.js';
@@ -69,7 +69,7 @@ async function runLibrary() {
     JavaScript: 'js',
   };
 
-  if (!create_nixix_app(cssOptions['(css)'])) {
+  if (!create_nixix_app(tsOrJs['(ts/js)'], cssOptions['(css)'])) {
     return;
   }
   if (
@@ -90,38 +90,38 @@ runLibrary();
 
 /**
  * @typedef {import('./types/index').CSSOptions} CSSOptions
+ * @typedef {import('./types/index').TemplateMap} TemplateMap
+ * @param {keyof TemplateMap} template
  * @param {CSSOptions} cssOptions
  */
-function create_nixix_app(cssOptions) {
-  const maybeNull = configPackage();
-  if (maybeNull === null) {
-    return null;
-  }
-
+function create_nixix_app(template, cssOptions) {
   /**
    * @type {import('./types').Dependencies}
    */
   const installMap = {
     dependencies: {
-      nixix: '1.4.26',
+      nixix: 'latest',
     },
   };
 
   if (cssOptions === 'TailwindCSS') {
     installMap['devDependencies'] = {
-      tailwindcss: '3.3.1',
-      postcss: '8.4.22',
-      autoprefixer: '10.4.14',
+      tailwindcss: 'latest',
+      postcss: 'latest',
+      autoprefixer: 'latest',
     };
   }
+  const maybeNull = configPackage(installMap);
+  if (maybeNull === null) {
+    return null;
+  }
+
   configGitignore();
-  configJS();
+  template === 'JavaScript' ? configJS() : configTS();
   configVite();
   configSnippets();
   console.log(
-    `All done. Happy Coding ✔️ .', 'Type "npm install${configPackage(
-      installMap
-    )}" in the terminal now to get started.`
+    `All done. Happy Coding ✔️ .', 'Run the "npm i" command in the terminal now to install all Dependencies.`
   );
   return 'Done';
 }
